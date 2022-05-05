@@ -1,26 +1,29 @@
 ﻿#include <iostream>
 using namespace std;
 
-class Sensor {
+class Sensor
+{
 public:
-    Sensor(const string& yourName) : name(yourName) {} //问题1
-public:
-    float readValue() const {
+    Sensor(const string &yourName) : name(yourName) {} //问题1
+    float readValue() const
+    {
         unsigned int val = ((mLow16 << 16) | mHigh16);
-        return *((float*)(&val));
+        return *((float *)(&val));
     }
-    void  setValue(float val) {
-        unsigned int  binary32 = *(unsigned int*)(&val);
+    void setValue(float val)
+    {
+        unsigned int binary32 = *(unsigned int *)(&val);
         mLow16 = ((binary32 >> 16) & 0xFFFF);
         mHigh16 = (binary32 & 0xFFFF);
     }
-    const string& studentName() const { return name; } //问题2
+    const string &studentName() const { return name; } //问题2
     void setHigh(int v) { mHigh16 = v & 0xFFFF; }
     void setLow(int v) { mLow16 = v & 0xFFFF; }
-    unsigned  int high() const { return mHigh16; }
-    unsigned  int low() const { return mLow16; }
+    unsigned int high() const { return mHigh16; }
+    unsigned int low() const { return mLow16; }
+
 private:
-    string  name;
+    string name;
     unsigned int mHigh16 = 0;
     unsigned int mLow16 = 0;
 };
