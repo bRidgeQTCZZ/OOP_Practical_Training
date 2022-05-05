@@ -3,12 +3,12 @@ using namespace std;
 
 class Sensor {
 public:
-	Sensor(const string& yourName) : name(yourName) {} //问题1
+    Sensor(const string& yourName) : name(yourName) {} //问题1
 public:
-	float readValue() const {
-		unsigned int val = ((mLow16 << 16) | mHigh16);
-		return *((float*)(&val));
-	}
+    float readValue() const {
+        unsigned int val = ((mLow16 << 16) | mHigh16);
+        return *((float*)(&val));
+    }
     void  setValue(float val) {
         unsigned int  binary32 = *(unsigned int*)(&val);
         mLow16 = ((binary32 >> 16) & 0xFFFF);
